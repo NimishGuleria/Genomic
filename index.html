@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Genomic Digital Twin System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">Genomic Twin</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">☰</button>
+      <nav class="site-nav" id="site-nav">
+        <a href="#overview">Overview</a>
+        <a href="#modules">Modules</a>
+        <a href="#lab">Lab</a>
+        <a href="#flow">Flow</a>
+        <a href="#applications">Applications</a>
+        <a href="#stack">Tech Stack</a>
+      </nav>
+      <div class="auth-section" id="auth-section">
+        <span id="user-display" class="user-display"></span>
+        <a href="admin.html" id="admin-link" class="button secondary small" style="display: none;">Admin</a>
+        <button id="logout-btn" class="button secondary small" style="display: none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">AI-Driven Genomics</p>
+          <h1>AI-Powered Genomic Digital Twin System</h1>
+          <p class="hero-copy">
+            Build a living virtual model of plants, humans, and environments to predict disease risks, optimize crop yield, and simulate future scenarios before they happen.
+          </p>
+          <a class="button" href="#modules">Explore the System</a>
+        </div>
+        <div class="hero-panel">
+          <div class="hero-card">
+            <span>🌱 Plants</span>
+            <p>Model crop genetics, soil response, and yield potential.</p>
+          </div>
+          <div class="hero-card">
+            <span>🧑 Humans</span>
+            <p>Predict genetic health outcomes and personalize recommendations.</p>
+          </div>
+          <div class="hero-card">
+            <span>🌍 Environment</span>
+            <p>Simulate climate, soil, and weather influence on biology.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Core Idea</h2>
+          <p>Create a virtual biological copy—a Digital Twin—that mirrors real organisms and predicts outcomes across agriculture, health, and environment.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="container">
+        <div class="section-heading">
+          <h2>System Modules</h2>
+          <p>The system is built from seven main modules that transform raw genomic and environmental data into actionable predictions.</p>
+        </div>
+        <div class="grid cards-grid">
+          <article class="card">
+            <h3>1. Data Collection Layer</h3>
+            <p>Collects DNA sequences, crop metrics, soil data, weather readings and disease records as the raw input layer.</p>
+          </article>
+          <article class="card">
+            <h3>2. AI Learning Engine</h3>
+            <p>Uses machine learning, deep learning, and pattern recognition to identify gene functions, crop traits, and environmental effects.</p>
+          </article>
+          <article class="card">
+            <h3>3. Genomic Mapping System</h3>
+            <p>Translates raw DNA into structured gene behavior maps, such as resistance, yield risk, and drought tolerance.</p>
+          </article>
+          <article class="card">
+            <h3>4. Digital Twin Generator</h3>
+            <p>Builds virtual biological models that simulate plants, genes, and organisms inside a digital environment.</p>
+          </article>
+          <article class="card">
+            <h3>5. Simulation Engine</h3>
+            <p>Runs experiments on crop and health models using heat, drought, disease, and gene-editing scenarios.</p>
+          </article>
+          <article class="card">
+            <h3>6. Prediction System</h3>
+            <p>Delivers outputs such as crop variety recommendations, yield forecasts, disease alerts, and personalized health insights.</p>
+          </article>
+          <article class="card">
+            <h3>7. Security & Ethics Layer</h3>
+            <p>Protects sensitive genetic data with encryption, access control, authentication, and ethical AI monitoring.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-lab" id="lab">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Interactive Genetics Lab</h2>
+          <p>Build species profiles, define environments, and ask the digital twin for outcome predictions.</p>
+        </div>
+        <div class="lab-grid">
+          <div class="card profile-panel">
+            <h3>Species Data Studio</h3>
+            <form id="species-form">
+              <label for="species-name">Species Name</label>
+              <input id="species-name" type="text" placeholder="Wheat, Cow, Rice, Tomato" required />
+
+              <label for="organism-type">Organism Category</label>
+              <select id="organism-type">
+                <option value="Plant">Plant</option>
+                <option value="Human">Human</option>
+                <option value="Animal">Animal</option>
+                <option value="Mammal">Mammal</option>
+                <option value="Bird">Bird</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Amphibian">Amphibian</option>
+                <option value="Aquatic Animal">Aquatic Animal</option>
+                <option value="Insect">Insect</option>
+                <option value="Microbe">Microbe</option>
+              </select>
+
+              <label for="species-description">Species Info</label>
+              <textarea id="species-description" rows="3" placeholder="Genetic traits, breed, lineage, biography"></textarea>
+
+              <div id="type-specific-fields"></div>
+
+              <label for="temperature">Temperature Range</label>
+              <input id="temperature" type="text" placeholder="20-30°C" />
+
+              <label for="soil-quality">Soil / Water Quality</label>
+              <input id="soil-quality" type="text" placeholder="Loamy, sandy, acidic" />
+
+              <label for="humidity">Humidity Conditions</label>
+              <input id="humidity" type="text" placeholder="High, medium, low" />
+
+              <label for="mutation-notes">Mutation / Variant Notes</label>
+              <textarea id="mutation-notes" rows="2" placeholder="Mutation, editing, gene variant"></textarea>
+
+              <label for="disease-notes">Disease / Pathogen Risks</label>
+              <textarea id="disease-notes" rows="2" placeholder="Viral disease, bacteria, infection risks"></textarea>
+
+              <button class="button secondary" type="submit">Save Species Profile</button>
+            </form>
+
+            <div class="profile-list">
+              <h4>Saved Profiles</h4>
+              <select id="species-select">
+                <option value="">Select a saved profile</option>
+              </select>
+              <button id="delete-profile" class="button secondary small" type="button">Remove selected profile</button>
+            </div>
+            <div class="stored-data-panel">
+              <h4>Stored Data Viewer</h4>
+              <button id="refresh-data" class="button secondary small" type="button">Refresh stored data</button>
+              <pre id="stored-data-view">No saved data yet. Save a profile to view stored JSON.</pre>
+            </div>
+            <div class="profile-details card">
+              <h4>Profile Details</h4>
+              <table id="profile-details-table">
+                <tbody>
+                  <tr><td>No profile loaded.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="ai-mode-panel">
+              <label for="ai-provider-selector">AI Mode</label>
+              <select id="ai-provider-selector">
+                <option value="local">Local AI (free)</option>
+                <option value="openai">OpenAI GPT</option>
+                <option value="gemini">Gemini</option>
+              </select>
+              <p class="ai-note">Select the AI backend for responses. Local AI works without keys; external providers need API keys configured.</p>
+            </div>
+            <div class="report-summary card" id="report-summary"></div>
+            <div class="chat-window" id="chat-window"></div>
+            <form id="chat-form" class="chat-form">
+              <input id="chat-input" type="text" placeholder="Ask a question about the species" autocomplete="off" />
+              <button class="button" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-feature" id="flow">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Complete Working Flow</h2>
+          <p>From raw biological data to predictions and secure decision support.</p>
+        </div>
+        <div class="flow-grid">
+          <div class="flow-step">🧬 Biological + Environmental Data</div>
+          <div class="flow-step">⬇️ AI Data Processing</div>
+          <div class="flow-step">⬇️ Gene Pattern Learning</div>
+          <div class="flow-step">⬇️ Digital Twin Creation</div>
+          <div class="flow-step">⬇️ Simulation of Real-World Conditions</div>
+          <div class="flow-step">⬇️ Prediction Output</div>
+          <div class="flow-step">⬇️ Secure Storage & Sharing</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="applications">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Real-World Applications</h2>
+          <p>Use cases across agriculture, healthcare and environmental science.</p>
+        </div>
+        <div class="grid cards-grid">
+          <article class="card">
+            <h3>Agriculture Revolution</h3>
+            <p>Smart farming decisions, climate-resilient crops, and reduced pesticide use through predictive farming.</p>
+          </article>
+          <article class="card">
+            <h3>Healthcare</h3>
+            <p>Early disease detection, genetic counseling, and personalized treatment recommendations.</p>
+          </article>
+          <article class="card">
+            <h3>Environmental Science</h3>
+            <p>Climate impact analysis, ecosystem prediction, and resilient crop planning using digital twin simulation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Technology Stack</h2>
+          <p>Tools and frameworks that power the genomic digital twin.</p>
+        </div>
+        <ul class="tech-list">
+          <li>Python</li>
+          <li>TensorFlow / PyTorch</li>
+          <li>BioPython</li>
+          <li>Scikit-learn</li>
+          <li>Cloud computing (AWS / Google Cloud)</li>
+          <li>Genomic databases (NCBI, Ensembl)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="container cta-box">
+        <h2>Why this project is special</h2>
+        <p>This system does more than analyze data. It creates a virtual living biological model—a Digital Twin—that can simulate future outcomes before they occur.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>AI-Powered Genomic Digital Twin System for Disease Prediction and Crop Optimization</p>
+      <p>Built with an intelligent mix of genomics, AI, and secure simulation.</p>
+    </div>
+  </footer>
+
+  <script src="ai-config.js"></script>
+  <script src="ai.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

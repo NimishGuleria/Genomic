@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Genomic Digital Twin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Genomic Digital Twin</h1>
+      <p class="login-subtitle">Sign in to access the lab</p>
+
+      <div id="entry-step" class="login-step active">
+        <h2>Welcome</h2>
+        <p>Select your access mode to continue.</p>
+        <div class="login-action-grid">
+          <button id="btn-existing-account" class="button full-width" type="button">Log In</button>
+          <button id="btn-new-account" class="button full-width" type="button">Sign Up</button>
+        </div>
+        <p class="login-footer">Continue with your account to access the digital twin lab.</p>
+      </div>
+
+      <div id="signup-step" class="login-step">
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="login-name">Full Name</label>
+            <input id="login-name" type="text" placeholder="John Doe" required />
+          </div>
+
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input id="login-email" type="email" placeholder="john@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="login-phone">Phone Number</label>
+            <input id="login-phone" type="tel" placeholder="+1 (555) 000-0000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="login-dob">Date of Birth</label>
+            <input id="login-dob" type="date" required />
+            <small style="color: var(--text-muted);">Must be 18+ to access the platform</small>
+          </div>
+
+          <div class="form-group">
+            <label for="login-profession">Profession / Role</label>
+            <input id="login-profession" type="text" placeholder="e.g., Researcher, Farmer, Scientist" />
+          </div>
+
+          <div class="form-group">
+            <label for="login-gender">Gender (Optional)</label>
+            <select id="login-gender">
+              <option value="">Prefer not to say</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="login-country">Country / City</label>
+            <input id="login-country" type="text" placeholder="e.g., India, USA" />
+          </div>
+
+          <div class="form-group">
+            <label for="account-role">Account Type</label>
+            <select id="account-role">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="admin-code-field" style="display:none;">
+            <label for="admin-code">Admin Access Code</label>
+            <input id="admin-code" type="text" placeholder="Enter admin code" />
+          </div>
+
+          <div class="form-group">
+            <label>Verify via</label>
+            <div class="radio-group">
+              <input id="verify-email" type="radio" name="verify-method" value="email" checked />
+              <label for="verify-email" class="inline-label">Email</label>
+              <input id="verify-phone" type="radio" name="verify-method" value="phone" />
+              <label for="verify-phone" class="inline-label">Phone</label>
+            </div>
+          </div>
+
+          <button class="button full-width" type="submit">Send OTP</button>
+        </form>
+        <button id="back-to-entry-from-signup" class="button secondary full-width" type="button">Back</button>
+      </div>
+
+      <div id="existing-login-step" class="login-step">
+        <form id="login-email-form">
+          <div class="form-group">
+            <label for="login-email-only">Email Address</label>
+            <input id="login-email-only" type="email" placeholder="john@example.com" required />
+          </div>
+          <button class="button full-width" type="submit">Send OTP</button>
+        </form>
+        <button id="back-to-entry-from-login" class="button secondary full-width" type="button">Back</button>
+      </div>
+
+      <div id="otp-step" class="login-step">
+        <form id="otp-form">
+          <p class="otp-instruction">Enter the 6-digit OTP sent to <span id="otp-destination">your email</span></p>
+          <div class="form-group">
+            <label for="otp-input">OTP Code</label>
+            <input id="otp-input" type="text" placeholder="000000" maxlength="6" required />
+          </div>
+
+          <button class="button full-width" type="submit">Verify OTP</button>
+          <button id="resend-otp" class="button secondary full-width" type="button">Resend OTP</button>
+        </form>
+
+        <button id="back-to-info" class="button secondary full-width" type="button">Back</button>
+        <p class="login-footer">OTP expires in 5 minutes</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

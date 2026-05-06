@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shared User Data - Genomic Digital Twin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Genomic Twin</a>
+    </div>
+  </header>
+
+  <main class="share-page">
+    <div class="container">
+      <div class="share-box">
+        <h1>Shared User Information</h1>
+        <div id="share-content">
+          <p>Loading shared data...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>This is a secure shared link for authorized personnel only</p>
+    </div>
+  </footer>
+
+  <script>
+    const SHARES_KEY = 'genomicUserShares';
+    const AUTH_USERS_KEY = 'genomicAuthUsers';
+
+    function getQueryParam(name) {
+      const url = new URL(window.location);
+      return url.searchParams.get(name);
+    }
+
+    function loadSharedData() {
+      const token = getQueryParam('token');
+      const content = document.getElementById('share-content');
+
+      if (!token) {
+        content.innerHTML = '<p style="color: #d32f2f;">Invalid or missing share token.</p>';
+        return;
+      }
+
+      try {
+        const sharesJson = localStorage.getItem(SHARES_KEY);
+        const shares = sharesJson ? JSON.parse(sharesJson) : [];
+        const share = shares.find(s => s.token === token);
+
+        if (!share) {
+          content.innerHTML = '<p style="color: #d32f2f;">Share not found or has expired.</p>';
+          return;
+        }
+
+        // Check expiration
+        if (new Date(share.expiresAt) < new Date()) {
+          content.innerHTML = '<p style="color: #d32f2f;">This share link has expired.</p>';
+          return;
+        }
+
+        // Get user data
+        const usersJson = localStorage.getItem(AUTH_USERS_KEY);
+        const users = usersJson ? JSON.parse(usersJson) : [];
+        const user = users.find(u => u.email === share.userEmail);
+
+        if (!user) {
+          content.innerHTML = '<p style="color: #d32f2f;">User data not found.</p>';
+          return;
+        }
+
+        // Display shared data
+        content.innerHTML = `
+          <div class="share-data">
+            <h2>User Profile</h2>
+            <div class="data-field">
+              <label>Name</label>
+              <p>${user.name}</p>
+            </div>
+            <div class="data-field">
+              <label>Email</label>
+              <p>${user.email}</p>
+            </div>
+            <div class="data-field">
+              <label>Phone</label>
+              <p>${user.phone}</p>
+            </div>
+            <div class="data-field">
+              <label>Age Range</label>
+              <p>${user.ageRange || 'N/A'}</p>
+            </div>
+            <div class="data-field">
+              <label>Profession</label>
+              <p>${user.profession || 'N/A'}</p>
+            </div>
+            <div class="data-field">
+              <label>Gender</label>
+              <p>${user.gender || 'Not specified'}</p>
+            </div>
+            <div class="data-field">
+              <label>Location</label>
+              <p>${user.country || 'N/A'}</p>
+            </div>
+            <div class="data-field">
+              <label>Member Since</label>
+              <p>${new Date(user.createdAt).toLocaleDateString()}</p>
+            </div>
+            <div class="data-field">
+              <label>Total Logins</label>
+              <p>${user.loginCount || 1}</p>
+            </div>
+            <div class="data-field">
+              <label>Last Login</label>
+              <p>${new Date(user.lastLogin || user.createdAt).toLocaleString()}</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Login History</h3>
+            <div class="history-items">
+              ${user.history && user.history.length > 0 ? user.history.map((entry, idx) => `
+                <div class="history-item">
+                  <span class="history-index">#${user.history.length - idx}</span>
+                  <span class="history-time">${new Date(entry.timestamp).toLocaleString()}</span>
+                </div>
+              `).join('') : '<p>No history available</p>'}
+            </div>
+
+            <div class="share-meta" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+              <small>Shared by: ${share.sharedBy}</small>
+              <small>Expires: ${new Date(share.expiresAt).toLocaleDateString()}</small>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error loading shared data', error);
+        content.innerHTML = '<p style="color: #d32f2f;">Error loading shared data.</p>';
+      }
+    }
+
+    loadSharedData();
+  </script>
+</body>
+</html>
