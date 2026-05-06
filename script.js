@@ -482,6 +482,7 @@ function initializeAuthUI() {
   }
 }
 
+checkAuth();
 initializeAuthUI();
 
 if (speciesForm) {
